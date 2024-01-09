@@ -1,0 +1,22 @@
+{
+  "name": "308a.4.1",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "This graded assignment challenges you to create an interactive application using data from an external Application Programming Interface (API). In order to accomplish this task, you will employ the tools and techniques you have learned thus far, including fetch, Axios, and async/await syntax. ## Objectives - Request data from an external API using fetch and Axios. - Create an interactive, dynamic webpage that serves content from an external API. - Use async/await and Promises to create synchronous logic in asynchronous actions. - Using fetch or Axios, POST data to and DELETE data from an external API. ## Submission Submit your completed lab using the Start Assignment button on the assignment page in Canvas. Your submission should include: A GitHub link to your completed project repository. ## Instructions The CodeSandbox below contains pre-configured contents, including an HTML layout, CSS styling, and instructions embedded in the form of comments. Take a few minutes to familiarize yourself with the contents of the sandbox. Download the sandbox and initialize a local git repository. Link this repository to GitHub, and use your local development environment to complete the tasks that follow. You will be primarily working within the index.js file. Commit frequently! Every time something works, you should commit it. Remember, you can always go back to a previous commit if something breaks. ### Part 1: The API For the purposes of this assignment, you will be working with The Cat API, which is a free public API. Navigate to the API’s website using the link above, and then create an account as follows:",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.23.7",
+    "@popperjs/core": "^2.11.8",
+    "axios": "^1.6.5",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1",
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^5.3.3"
+  }
+}

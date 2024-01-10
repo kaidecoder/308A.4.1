@@ -56,7 +56,10 @@ let breedSet = new Set();
             document.querySelector(".carousel-inner").appendChild(img)
             img.style.width = "200px"
             img.style.height = "200px"
-            img.style.marginRight = "20px"
+            document.querySelector(".carousel-inner").style.display = "flex"
+            document.querySelector(".carousel-inner").style.flexWrap = "wrap"
+            document.querySelector(".carousel-inner").style.backgroundColor = "black"
+            document.querySelector(".carousel-inner").style.gap = "20px"
         })
         
     });

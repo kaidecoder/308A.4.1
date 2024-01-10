@@ -1,6 +1,9 @@
 import * as Carousel from "./Carousel.js";
 import axios from "axios";
 
+// console.log(Carousel)
+
+
 // The breed selection input element.
 let breedSelect = document.getElementById("breedSelect");
 // The information section div element.
@@ -22,27 +25,54 @@ const API_KEY = "live_f442WpIpdmrvNYLgvqJ0J8GK7oIq3nbSIci46khmdQGVzslHpzf6QNYWy5
  *  - Each option should display text equal to the name of the breed.
  * This function should execute immediately.
  */
-let breedSet = new Set()
-async function initialLoad(){
+let breedSet = new Set();
+(async function initialLoad(){
     const response = await fetch("https://api.thecatapi.com/v1/breeds")
-    const data = await response.json()
-    console.log(data)
+    const data = await response.json();
+    console.log(data);
     data.forEach(breed => {
-        breedSet.add(breed.id)
-        console.log(breedSet)
-        breedSelect = document.getElementById("breedSelect")
-        let option = document.createElement("option")
-        option.setAttribute("value", `${breed.id}`)
-        option.innerHTML = `${toTitleCase(breed.id)}`
-        breedSelect.append(option)
-    })
+        // breedSet.add(breed.name);
+        // console.log(breedSet);
+        breedSelect = document.getElementById("breedSelect");
+        let option = document.createElement("option");
+        option.setAttribute("value", `${breed.id}`);
+        option.innerHTML = `${toTitleCase(breed.name)}`
+        breedSelect.appendChild(option);
+        
+    });
     
-}
-initialLoad()
+    breedSelect.addEventListener("change", async function(e){
+        const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${e.target.value}`)
+        const cats = await response.json()
+        console.log(cats)
+
+        // Populate the Carousel
+        cats.forEach(cat => {
+            console.log(cats)
+            const img = document.createElement("img")
+            img.src = `${cat.url}`
+            img.id = `${cat.id}`
+            img.alt = `${breedSelect.value}`
+            document.querySelector(".carousel-inner").appendChild(img)
+            img.style.width = "200px"
+            img.style.height = "200px"
+            img.style.marginRight = "20px"
+        })
+        
+    });
+
+    
+    
+})()
+
+
+
 
 function toTitleCase(str){
     return str.charAt(0).toUpperCase() + str.substr(1)
 }
+
+
 
 
 /**
@@ -59,22 +89,11 @@ function toTitleCase(str){
  * - Each new selection should clear, re-populate, and restart the Carousel.
  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
  */
-let breedDescription = []
-async function breedSelectEventHandler(){
-    const response = await fetch("https://api.thecatapi.com/v1/breeds")
-    const data = await response.json()
-    console.log(data)
-    data.forEach(breed => {
-        breedDescription.push([breed.description])
-        console.log(breedDescription)
-    })
-}
-console.log(breedSelectEventHandler())
 
-Carousel.createCarouselItem(imgSrc, imgAlt, imgId)
-let imgSrc = "./bird.jpeg"
-let imgAlt = "Funny cat"
-let imgId = "Catty"
+
+
+
+
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
  */

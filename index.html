@@ -28,6 +28,7 @@
     <!-- Our Scripts -->
     <script src="./Carousel.js"></script>
     <script src="./index.js"></script>
+    
   </head>
 
   <body>
@@ -62,7 +63,7 @@
         data-bs-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden" id="prev" onclick="show_image(-1)">Previous</span>
       </button>
       <button
         class="carousel-control-next"
@@ -71,7 +72,7 @@
         data-bs-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden" id="next" onclick="show_img(1)">Next</span>
       </button>
     </div>
 

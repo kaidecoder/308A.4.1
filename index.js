@@ -1,7 +1,7 @@
 import * as Carousel from "./Carousel.js";
 import axios from "axios";
 
-// console.log(Carousel)
+
 
 
 // The breed selection input element.
@@ -11,7 +11,7 @@ const infoDump = document.getElementById("infoDump");
 // The progress bar div element.
 const progressBar = document.getElementById("progressBar");
 // The get favorites button element.
-const getFavoritesBtn = document.getElementById("getFavoritesBtn");
+const getFavouritesBtn = document.getElementById("getFavouritesBtn");
 
 // Step 0: Store your API key here for reference and easy access.
 const API_KEY = "live_f442WpIpdmrvNYLgvqJ0J8GK7oIq3nbSIci46khmdQGVzslHpzf6QNYWy5vjyM9A";
@@ -25,18 +25,15 @@ const API_KEY = "live_f442WpIpdmrvNYLgvqJ0J8GK7oIq3nbSIci46khmdQGVzslHpzf6QNYWy5
  *  - Each option should display text equal to the name of the breed.
  * This function should execute immediately.
  */
-let breedSet = new Set();
 (async function initialLoad(){
     const response = await fetch("https://api.thecatapi.com/v1/breeds")
     const data = await response.json();
     console.log(data);
     data.forEach(breed => {
-        // breedSet.add(breed.name);
-        // console.log(breedSet);
-        breedSelect = document.getElementById("breedSelect");
         let option = document.createElement("option");
         option.setAttribute("value", `${breed.id}`);
         option.innerHTML = `${toTitleCase(breed.name)}`
+        breedSelect = document.getElementById("breedSelect");
         breedSelect.appendChild(option);
         
     });
@@ -46,36 +43,28 @@ let breedSet = new Set();
         const cats = await response.json()
         console.log(cats)
 
+        Carousel.clear()
+
         // Populate the Carousel
         cats.forEach(cat => {
-            console.log(cats)
-            const img = document.createElement("img")
-            img.src = `${cat.url}`
-            img.id = `${cat.id}`
-            img.alt = `${breedSelect.value}`
-            document.querySelector(".carousel-inner").appendChild(img)
-            img.style.width = "200px"
-            img.style.height = "200px"
-            document.querySelector(".carousel-inner").style.display = "flex"
-            document.querySelector(".carousel-inner").style.flexWrap = "wrap"
-            document.querySelector(".carousel-inner").style.backgroundColor = "black"
-            document.querySelector(".carousel-inner").style.gap = "20px"
+            console.log(cat)
+            const imgSrc = cat.url
+            const imgAlt = breedSelect.value
+            const imgId = cat.id
+
+            Carousel.appendCarousel(Carousel.createCarouselItem(imgSrc, imgAlt, imgId))
+
         })
-        
+        Carousel.start()
     });
 
     
     
 })()
 
-
-
-
 function toTitleCase(str){
     return str.charAt(0).toUpperCase() + str.substr(1)
 }
-
-
 
 
 /**
@@ -83,6 +72,8 @@ function toTitleCase(str){
  * - Retrieve information on the selected breed from the cat API using fetch().
  *  - Make sure your request is receiving multiple array items!
  *  - Check the API documentation if you're only getting a single object.
+ * 
+ * 
  * - For each object in the response array, create a new element for the carousel.
  *  - Append each of these new elements to the carousel.
  * - Use the other data you have been given to create an informational section within the infoDump element.

@@ -19,6 +19,7 @@
     <!-- Our Scripts -->
     <script src="/Carousel.65c09124.js"></script>
     <script src="/308A.4.1.e31bb0bc.js"></script>
+    
   <script src="/styles.8986bff4.js"></script></head>
 
   <body>
@@ -39,11 +40,11 @@
       <div id="carouselInner" class="carousel-inner"></div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden" id="prev" onclick="show_image(-1)">Previous</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden" id="next" onclick="show_img(1)">Next</span>
       </button>
     </div>
 

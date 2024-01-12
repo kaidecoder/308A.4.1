@@ -14,7 +14,7 @@ const progressBar = document.getElementById("progressBar");
 const getFavouritesBtn = document.getElementById("getFavouritesBtn");
 
 // Step 0: Store your API key here for reference and easy access.
-const API_KEY = "live_f442WpIpdmrvNYLgvqJ0J8GK7oIq3nbSIci46khmdQGVzslHpzf6QNYWy5vjyM9A";
+const API_KEY = `${process.env.CAT_API_KEY}`;
 
 
 /**
